@@ -24,14 +24,15 @@ namespace Course_HW_Week2
             }
             else
             {
+                Console.WriteLine("Invalid value. Press any button to continue.");
+                Console.ReadKey();
                 goto exc;
             }
 
             Console.WriteLine("Insert description: ");
             entry.Name = Console.ReadLine();
             budget.Add(entry);
-        exc: Console.WriteLine("Invalid value");
-            return entry.Amount;
+            exc: return entry.Amount;
 
         }
         public decimal IncomeAction()
@@ -47,14 +48,15 @@ namespace Course_HW_Week2
                 }
                 else
                 {
-                    goto exc;
+                Console.WriteLine("Invalid value. Press any button to continue.");
+                Console.ReadKey();
+                goto exc;
                 }
 
             Console.WriteLine("Insert description: ");
             entry.Name = Console.ReadLine();
             budget.Add(entry);
-        exc: Console.WriteLine("Invalid value");
-            return entry.Amount;
+           exc: return entry.Amount;
 
         }
         public void AllOperations()
