@@ -10,7 +10,7 @@ namespace Course_HW_Week2
             BudgetService budgetService = new BudgetService();
 
 
-            Console.WriteLine("Welcome to the spending tracker");
+            Console.WriteLine("Welcome to the Budget Tracker");
             Console.WriteLine("Provide starting budget:");
             decimal balance = decimal.Parse(Console.ReadLine());
             while (true)
@@ -23,34 +23,43 @@ namespace Course_HW_Week2
                 switch (operation.KeyChar)
                 {
                     case '1':
-                        balance -= budgetService.ExpenseAction();
+                        budgetService.ExpenseAction();
                         break;
 
                     case '2':
-                        balance += budgetService.IncomeAction();
+                        budgetService.IncomeAction();
                         break;
 
                     case '3':
-                        Console.WriteLine($"\nCurrent balance: {balance}");
-                        Console.ReadKey();
+                        budgetService.EditAction();
                         break;
 
                     case '4':
-                        budgetService.AllOperations();
+                        budgetService.DeleteAction();
+                        break;
+
+                    case '5':
+                        decimal currentBalance = budgetService.CurrentBalance(balance);
+                        Console.WriteLine($"\nCurrent balance: {currentBalance}");
+                        Console.ReadKey();
+                        break;
+
+                    case '6':
+                        budgetService.AllEntries();
                         Console.ReadKey();
                         break;
                 }
             }
-
         }
-
 
         private static BudgetOperationsService OperationsInit(BudgetOperationsService operations)
         {
             operations.AddOperations(1, "Add expense");
             operations.AddOperations(2, "Add income");
-            operations.AddOperations(3, "Display current budget");
-            operations.AddOperations(4, "List all expenses and incomes");
+            operations.AddOperations(3, "Edit entry");
+            operations.AddOperations(4, "Delete entry");
+            operations.AddOperations(5, "Display current budget");
+            operations.AddOperations(6, "List all expenses and incomes");
             return operations;
         }
     }
